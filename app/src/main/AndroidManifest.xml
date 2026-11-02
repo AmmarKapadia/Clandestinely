@@ -12,17 +12,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Clandestinely">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.signin.SignInActivity"
             android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.Clandestinely"
-            android:windowSoftInputMode="adjustResize">
+            android:theme="@style/Theme.Clandestinely">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Clandestinely" />
     </application>
 
 </manifest>
