@@ -1,0 +1,20 @@
+rules_version = '2';
+
+// CuacaUM Storage security rules
+// Hazard photos only: signed-in users can view them and upload new ones.
+// Photos can't be overwritten or deleted from the app (clean-up is done in the console).
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /hazard_photos/{fileName} {
+      allow read: if request.auth != null;
+
+      allow create: if request.auth != null
+        && fileName.matches('[A-Za-z0-9_-]+\\.jpg')
+        && request.resource.size < 5 * 1024 * 1024
+        && request.resource.contentType.matches('image/.*');
+
+      allow update, delete: if false;
+    }
+  }
+}

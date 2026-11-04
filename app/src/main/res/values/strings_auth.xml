@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Sign-in screen text. Arieth can add the Bahasa Melayu versions in values-ms/strings_auth.xml. -->
+<resources>
+    <string name="sign_in_title">CuacaUM</string>
+    <string name="sign_in_subtitle">Weather alerts, safety tips and sheltered routes around UM</string>
+    <string name="sign_in_google">Sign in with Google</string>
+    <string name="sign_in_guest">Continue as guest</string>
+</resources>
