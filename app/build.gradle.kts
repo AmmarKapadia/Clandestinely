@@ -39,6 +39,7 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation(libs.material)
     testImplementation(libs.junit)
+    testImplementation("org.json:json:20240303") // lets the unit tests read rule_tips_v1.json
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(libs.ext.junit)
 
