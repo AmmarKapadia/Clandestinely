@@ -1,0 +1,345 @@
+{
+  "version": 1,
+  "updated": "2026-11-03",
+  "sources": {
+    "team": "Team-written general advice",
+    "nps": "US National Park Service: Lightning Safety",
+    "mdh": "Minnesota Department of Health: Know the signs of heat-related illness",
+    "moh": "Malaysia Ministry of Health haze advice (reported by Malay Mail, 16 Oct 2026)",
+    "pub": "Singapore PUB: Flood public advisory",
+    "who": "WHO: The ultraviolet (UV) index"
+  },
+  "tips": [
+    {
+      "id": "normal-01",
+      "state": "normal",
+      "sensitivity": null,
+      "timeSlots": [],
+      "priority": 1,
+      "en": "No weather warnings on campus right now. Still carry a water bottle when walking between buildings.",
+      "ms": "Tiada amaran cuaca di kampus buat masa ini. Bawa juga botol air semasa berjalan antara bangunan.",
+      "source": "team"
+    },
+    {
+      "id": "normal-02",
+      "state": "normal",
+      "sensitivity": null,
+      "timeSlots": [
+        "morning",
+        "afternoon"
+      ],
+      "priority": 2,
+      "en": "Weather in KL can change quickly in the afternoon. Keep a small umbrella in your bag.",
+      "ms": "Cuaca di KL boleh berubah dengan cepat pada waktu petang. Simpan payung kecil dalam beg anda.",
+      "source": "team"
+    },
+    {
+      "id": "normal-03",
+      "state": "normal",
+      "sensitivity": null,
+      "timeSlots": [
+        "evening",
+        "night"
+      ],
+      "priority": 2,
+      "en": "Walking back late? Stick to well-lit paths and keep your phone charged. UM emergency contacts are in the Emergency tab.",
+      "ms": "Pulang lewat? Gunakan laluan yang terang dan pastikan telefon anda dicas. Nombor kecemasan UM ada dalam tab Kecemasan.",
+      "source": "team"
+    },
+    {
+      "id": "normal-04",
+      "state": "normal",
+      "sensitivity": null,
+      "timeSlots": [],
+      "priority": 2,
+      "en": "Check the hourly forecast before a long walk across campus. Rain and heat can build up within an hour.",
+      "ms": "Semak ramalan setiap jam sebelum berjalan jauh di kampus. Hujan dan panas boleh berlaku dalam masa sejam.",
+      "source": "team"
+    },
+    {
+      "id": "rain-01",
+      "state": "rain",
+      "sensitivity": null,
+      "timeSlots": [],
+      "priority": 1,
+      "en": "Rain is likely. Bring an umbrella and use the Driest route to stay under covered walkways.",
+      "ms": "Hujan dijangka. Bawa payung dan gunakan laluan Paling Kering untuk kekal di bawah laluan berbumbung.",
+      "source": "team"
+    },
+    {
+      "id": "rain-02",
+      "state": "rain",
+      "sensitivity": null,
+      "timeSlots": [],
+      "priority": 2,
+      "en": "Don't walk through flowing water. Just 15 cm of moving water can make you fall. Turn back and find another way.",
+      "ms": "Jangan meredah air yang mengalir. Air deras setinggi 15 cm sahaja boleh menyebabkan anda jatuh. Patah balik dan cari jalan lain.",
+      "source": "pub"
+    },
+    {
+      "id": "rain-03",
+      "state": "rain",
+      "sensitivity": null,
+      "timeSlots": [],
+      "priority": 2,
+      "en": "Floors and stairs get slippery at building entrances. Slow down and use the handrails.",
+      "ms": "Lantai dan tangga di pintu masuk bangunan menjadi licin. Berjalan perlahan dan gunakan pemegang tangan.",
+      "source": "team"
+    },
+    {
+      "id": "rain-04",
+      "state": "rain",
+      "sensitivity": null,
+      "timeSlots": [
+        "morning",
+        "evening"
+      ],
+      "priority": 2,
+      "en": "Rain at peak hours slows traffic and buses around campus. Leave earlier, or wait it out indoors.",
+      "ms": "Hujan pada waktu puncak melambatkan trafik dan bas di sekitar kampus. Bertolak lebih awal atau tunggu di dalam bangunan.",
+      "source": "team"
+    },
+    {
+      "id": "rain-05",
+      "state": "rain",
+      "sensitivity": "mobility",
+      "timeSlots": [],
+      "priority": 1,
+      "en": "Paths may be slippery or flooded. Use the Driest route, avoid ramps with standing water, and allow extra time.",
+      "ms": "Laluan mungkin licin atau banjir. Gunakan laluan Paling Kering, elakkan tanjakan yang bertakung air dan peruntukkan masa lebih.",
+      "source": "team"
+    },
+    {
+      "id": "rain-06",
+      "state": "rain",
+      "sensitivity": null,
+      "timeSlots": [],
+      "priority": 3,
+      "en": "Seen a flooded path or fallen branch? Report it in the app so others can avoid it.",
+      "ms": "Nampak laluan banjir atau dahan tumbang? Laporkan dalam aplikasi supaya orang lain boleh mengelaknya.",
+      "source": "team"
+    },
+    {
+      "id": "thunder-01",
+      "state": "thunderstorm",
+      "sensitivity": null,
+      "timeSlots": [],
+      "priority": 1,
+      "en": "Thunderstorm nearby. As soon as you hear thunder, go inside a building.",
+      "ms": "Ribut petir berhampiran. Sebaik sahaja anda mendengar guruh, masuk ke dalam bangunan.",
+      "source": "nps"
+    },
+    {
+      "id": "thunder-02",
+      "state": "thunderstorm",
+      "sensitivity": null,
+      "timeSlots": [],
+      "priority": 2,
+      "en": "Bus stops, pavilions and open walkways don't protect you from lightning. Wait inside an enclosed building.",
+      "ms": "Hentian bas, wakaf dan laluan terbuka tidak melindungi anda daripada kilat. Tunggu di dalam bangunan tertutup.",
+      "source": "nps"
+    },
+    {
+      "id": "thunder-03",
+      "state": "thunderstorm",
+      "sensitivity": null,
+      "timeSlots": [],
+      "priority": 2,
+      "en": "Stay away from tall, isolated trees, open fields and lakes until the storm passes.",
+      "ms": "Jauhi pokok tinggi yang bersendirian, padang terbuka dan tasik sehingga ribut berlalu.",
+      "source": "nps"
+    },
+    {
+      "id": "thunder-04",
+      "state": "thunderstorm",
+      "sensitivity": null,
+      "timeSlots": [],
+      "priority": 2,
+      "en": "Wait at least 30 minutes after the last thunder before heading out again, even if the rain has stopped.",
+      "ms": "Tunggu sekurang-kurangnya 30 minit selepas guruh terakhir sebelum keluar semula, walaupun hujan sudah berhenti.",
+      "source": "nps"
+    },
+    {
+      "id": "thunder-05",
+      "state": "thunderstorm",
+      "sensitivity": "mobility",
+      "timeSlots": [],
+      "priority": 1,
+      "en": "If you can't reach a building quickly, don't shelter under a tree. Ask someone nearby for help, or call UM Security from the Emergency tab.",
+      "ms": "Jika anda tidak dapat ke bangunan dengan cepat, jangan berteduh di bawah pokok. Minta bantuan orang berdekatan atau hubungi Keselamatan UM melalui tab Kecemasan.",
+      "source": "nps"
+    },
+    {
+      "id": "heat-01",
+      "state": "heat",
+      "sensitivity": null,
+      "timeSlots": [],
+      "priority": 1,
+      "en": "It feels like 38 °C or more. Drink water before you feel thirsty and refill your bottle.",
+      "ms": "Suhu terasa 38 °C atau lebih. Minum air sebelum berasa dahaga dan isi semula botol anda.",
+      "source": "team"
+    },
+    {
+      "id": "heat-02",
+      "state": "heat",
+      "sensitivity": null,
+      "timeSlots": [],
+      "priority": 2,
+      "en": "Take the Shadiest route and walk at an easy pace. Rest in air-conditioned buildings along the way.",
+      "ms": "Gunakan laluan Paling Teduh dan berjalan perlahan. Berehat di bangunan berhawa dingin di sepanjang jalan.",
+      "source": "team"
+    },
+    {
+      "id": "heat-03",
+      "state": "heat",
+      "sensitivity": null,
+      "timeSlots": [],
+      "priority": 2,
+      "en": "Dizzy, nauseous or sweating heavily? Move somewhere cool, loosen your clothing and sip cool water.",
+      "ms": "Pening, loya atau berpeluh banyak? Pergi ke tempat sejuk, longgarkan pakaian dan minum air sejuk sedikit demi sedikit.",
+      "source": "mdh"
+    },
+    {
+      "id": "heat-04",
+      "state": "heat",
+      "sensitivity": null,
+      "timeSlots": [],
+      "priority": 2,
+      "en": "Confusion, slurred speech or fainting can mean heatstroke. Call 999 straight away and cool the person down.",
+      "ms": "Keliru, pertuturan tidak jelas atau pengsan boleh menandakan strok haba. Hubungi 999 segera dan sejukkan badan orang itu.",
+      "source": "mdh"
+    },
+    {
+      "id": "heat-05",
+      "state": "heat",
+      "sensitivity": "heat",
+      "timeSlots": [],
+      "priority": 1,
+      "en": "Heat affects you more. Avoid walking outdoors in the hottest part of the day, and carry water and a small towel.",
+      "ms": "Haba lebih memberi kesan kepada anda. Elakkan berjalan di luar pada waktu paling panas dan bawa air serta tuala kecil.",
+      "source": "team"
+    },
+    {
+      "id": "heat-06",
+      "state": "heat",
+      "sensitivity": null,
+      "timeSlots": [
+        "afternoon"
+      ],
+      "priority": 2,
+      "en": "This is the hottest part of the day. Save long walks for the morning or evening if you can.",
+      "ms": "Ini waktu paling panas. Jika boleh, lakukan perjalanan jauh pada waktu pagi atau petang.",
+      "source": "team"
+    },
+    {
+      "id": "hazesens-01",
+      "state": "haze_sensitive",
+      "sensitivity": null,
+      "timeSlots": [],
+      "priority": 1,
+      "en": "Air quality is unhealthy for sensitive groups. Keep time outdoors short and stay indoors when you can.",
+      "ms": "Kualiti udara tidak sihat bagi golongan sensitif. Kurangkan masa di luar dan duduk di dalam bangunan jika boleh.",
+      "source": "moh"
+    },
+    {
+      "id": "hazesens-02",
+      "state": "haze_sensitive",
+      "sensitivity": null,
+      "timeSlots": [],
+      "priority": 2,
+      "en": "Skip outdoor exercise today. Indoor activities are a better choice.",
+      "ms": "Elakkan bersenam di luar hari ini. Aktiviti dalam bangunan adalah pilihan yang lebih baik.",
+      "source": "moh"
+    },
+    {
+      "id": "hazesens-03",
+      "state": "haze_sensitive",
+      "sensitivity": "asthma",
+      "timeSlots": [],
+      "priority": 1,
+      "en": "Haze can trigger asthma. Keep your inhaler with you and wear an N95 mask outdoors.",
+      "ms": "Jerebu boleh mencetuskan asma. Bawa inhaler anda dan pakai pelitup N95 di luar.",
+      "source": "moh"
+    },
+    {
+      "id": "hazesens-04",
+      "state": "haze_sensitive",
+      "sensitivity": "asthma",
+      "timeSlots": [],
+      "priority": 2,
+      "en": "Wheezing, chest tightness or breathlessness getting worse? Go indoors, follow your asthma action plan, and get medical help if it doesn't improve.",
+      "ms": "Semput, dada ketat atau sesak nafas semakin teruk? Masuk ke dalam bangunan, ikut pelan tindakan asma anda dan dapatkan rawatan jika tidak bertambah baik.",
+      "source": "team"
+    },
+    {
+      "id": "hazeunh-01",
+      "state": "haze_unhealthy",
+      "sensitivity": null,
+      "timeSlots": [],
+      "priority": 1,
+      "en": "Air quality is unhealthy for everyone. Avoid outdoor activities and stay indoors with the windows closed.",
+      "ms": "Kualiti udara tidak sihat untuk semua orang. Elakkan aktiviti luar dan duduk di dalam dengan tingkap ditutup.",
+      "source": "moh"
+    },
+    {
+      "id": "hazeunh-02",
+      "state": "haze_unhealthy",
+      "sensitivity": null,
+      "timeSlots": [],
+      "priority": 2,
+      "en": "If you must go outside, wear an N95 mask. Three-ply masks give only limited protection against haze.",
+      "ms": "Jika perlu keluar, pakai pelitup N95. Pelitup tiga lapis hanya memberi perlindungan terhad daripada jerebu.",
+      "source": "moh"
+    },
+    {
+      "id": "hazeunh-03",
+      "state": "haze_unhealthy",
+      "sensitivity": null,
+      "timeSlots": [],
+      "priority": 2,
+      "en": "Drink plenty of water, and see a doctor if you have breathing difficulty or chest pain.",
+      "ms": "Minum banyak air dan berjumpa doktor jika anda sukar bernafas atau sakit dada.",
+      "source": "team"
+    },
+    {
+      "id": "hazeunh-04",
+      "state": "haze_unhealthy",
+      "sensitivity": "asthma",
+      "timeSlots": [],
+      "priority": 1,
+      "en": "The air is unhealthy and you have asthma. Stay indoors as much as possible and keep your reliever inhaler close.",
+      "ms": "Udara tidak sihat dan anda menghidap asma. Duduk di dalam bangunan sebanyak mungkin dan simpan inhaler pelega berdekatan.",
+      "source": "moh"
+    },
+    {
+      "id": "uv-01",
+      "state": "uv",
+      "sensitivity": null,
+      "timeSlots": [],
+      "priority": 1,
+      "en": "UV is very high. Avoid direct sun around midday and walk in the shade.",
+      "ms": "Indeks UV sangat tinggi. Elakkan cahaya matahari terus sekitar tengah hari dan berjalan di tempat teduh.",
+      "source": "who"
+    },
+    {
+      "id": "uv-02",
+      "state": "uv",
+      "sensitivity": null,
+      "timeSlots": [],
+      "priority": 2,
+      "en": "Outdoors for a while? Wear a hat, sunglasses and sunscreen, and reapply sunscreen after sweating.",
+      "ms": "Lama di luar? Pakai topi, cermin mata hitam dan pelindung matahari, dan sapu semula selepas berpeluh.",
+      "source": "who"
+    },
+    {
+      "id": "uv-03",
+      "state": "uv",
+      "sensitivity": "uv",
+      "timeSlots": [],
+      "priority": 1,
+      "en": "Strong UV can worsen sun-sensitive skin conditions. Cover up, use sunscreen and take the Shadiest route.",
+      "ms": "UV yang kuat boleh memburukkan keadaan kulit yang sensitif kepada matahari. Tutup kulit, pakai pelindung matahari dan gunakan laluan Paling Teduh.",
+      "source": "who"
+    }
+  ]
+}

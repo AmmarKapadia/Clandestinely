@@ -1,0 +1,23 @@
+{
+  "name": "cuacaum-firebase",
+  "version": "1.0.0",
+  "description": "CuacaUM Firestore rules, sample data and tests",
+  "scripts": {
+    "test": "node --test test/logic.test.js",
+    "test:rules": "firebase emulators:exec --only firestore --project demo-cuacaum \"node --test test/rules.test.js\"",
+    "seed:dry": "node seed.js --dry-run",
+    "seed": "node seed.js",
+    "seed:clean": "node seed.js --clean",
+    "deploy": "firebase deploy --only firestore",
+    "deploy:storage": "firebase deploy --only storage"
+  },
+  "devDependencies": {
+    "@firebase/rules-unit-testing": "^6.0.0",
+    "firebase": "^13.1.0",
+    "firebase-tools": "^15.34.2"
+  },
+  "private": true,
+  "dependencies": {
+    "firebase-admin": "^14.5.0"
+  }
+}

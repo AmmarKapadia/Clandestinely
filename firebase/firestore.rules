@@ -1,0 +1,158 @@
+rules_version = '2';
+
+// CuacaUM Firestore security rules
+// Matches docs/firestore_schema.md (version 3).
+// Anything not matched below is denied.
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ---------- helpers ----------
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    function optionalString(d, field, maxLen) {
+      return !(field in d) || d[field] == null
+        || (d[field] is string && d[field].size() <= maxLen);
+    }
+
+    function reportPath(reportId) {
+      return /databases/$(database)/documents/hazard_reports/$(reportId);
+    }
+
+    function confirmationPath(reportId) {
+      return /databases/$(database)/documents/hazard_reports/$(reportId)/confirmations/$(request.auth.uid);
+    }
+
+    // ---------- users/{uid} ----------
+
+    function validUser(d) {
+      return d.keys().hasOnly(['displayName', 'email', 'isGuest', 'createdAt', 'updatedAt',
+                               'usualLocations', 'health', 'settings', 'alertPrefs', 'fcmTokens'])
+        && d.keys().hasAll(['displayName', 'isGuest', 'createdAt', 'updatedAt',
+                            'health', 'settings', 'alertPrefs'])
+        && d.displayName is string && d.displayName.size() <= 60
+        && optionalString(d, 'email', 120)
+        && d.isGuest is bool
+        && d.createdAt is timestamp
+        && d.updatedAt is timestamp
+        && (!('usualLocations' in d) || d.usualLocations is list)
+        && (!('fcmTokens' in d) || d.fcmTokens is list)
+        && d.health.keys().hasOnly(['asthma', 'heatSensitive', 'uvSensitive', 'mobilityLimited'])
+        && d.settings.language in ['en', 'ms']
+        && d.settings.textSize in ['normal', 'large']
+        && d.alertPrefs.rainLeadMinutes is int;
+    }
+
+    match /users/{uid} {
+      // Users can only see and change their own profile.
+      allow read, delete: if isOwner(uid);
+      allow create, update: if isOwner(uid) && validUser(request.resource.data);
+    }
+
+    // ---------- hazard_reports/{reportId} ----------
+
+    match /hazard_reports/{reportId} {
+      allow read: if signedIn();
+
+      // New report: your own, valid category, 0 confirmations,
+      // createdAt is the server time, and it lasts at most 2 hours
+      // (+5 minutes allowance for a phone clock that is slightly fast).
+      allow create: if signedIn()
+        && request.resource.data.keys().hasOnly(['category', 'description', 'photoPath', 'location',
+                                                 'nearestEdgeId', 'reportedBy', 'createdAt',
+                                                 'expiresAt', 'confirmCount'])
+        && request.resource.data.keys().hasAll(['category', 'location', 'reportedBy',
+                                                'createdAt', 'expiresAt', 'confirmCount'])
+        && request.resource.data.reportedBy == request.auth.uid
+        && request.resource.data.category in ['flood', 'fallen_tree', 'blocked_drain', 'other']
+        && request.resource.data.location is latlng
+        && request.resource.data.confirmCount == 0
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.expiresAt > request.time
+        && request.resource.data.expiresAt <= request.time + duration.value(125, 'm')
+        && optionalString(request.resource.data, 'description', 200)
+        && optionalString(request.resource.data, 'photoPath', 200)
+        && optionalString(request.resource.data, 'nearestEdgeId', 100);
+
+      // Confirming: someone other than the reporter, on a report that hasn't expired.
+      // Only confirmCount (+1) and expiresAt may change. expiresAt can move forward
+      // by at most 1 hour and never past 10 hours after createdAt.
+      // The user's confirmation doc must be created in the same transaction,
+      // and must not exist already (one confirmation per person).
+      allow update: if signedIn()
+        && resource.data.reportedBy != request.auth.uid
+        && resource.data.expiresAt > request.time
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['confirmCount', 'expiresAt'])
+        && request.resource.data.confirmCount == resource.data.confirmCount + 1
+        && request.resource.data.expiresAt >= resource.data.expiresAt
+        && request.resource.data.expiresAt <= resource.data.expiresAt + duration.value(1, 'h')
+        && request.resource.data.expiresAt <= resource.data.createdAt + duration.value(10, 'h')
+        && !exists(confirmationPath(reportId))
+        && existsAfter(confirmationPath(reportId));
+
+      // Only the reporter can delete their own report.
+      allow delete: if signedIn() && resource.data.reportedBy == request.auth.uid;
+
+      match /confirmations/{uid} {
+        allow read: if signedIn();
+
+        // Only created together with the +1 on the report's confirmCount.
+        allow create: if isOwner(uid)
+          && request.resource.data.keys().hasOnly(['confirmedAt'])
+          && request.resource.data.confirmedAt == request.time
+          && getAfter(reportPath(reportId)).data.confirmCount
+               == get(reportPath(reportId)).data.confirmCount + 1;
+      }
+    }
+
+    // ---------- tips_cache/{cacheKey} ----------
+
+    // The document ID must be built from the tip's own fields, exactly like
+    // TipCacheKey.build() in the app: states + "_" + timeSlot + "_" + sensitivities (or "none").
+    function tipKeyMatches(key, d) {
+      return (d.sensitivities.size() == 0
+               && key == d.states.join('+') + '_' + d.timeSlot + '_none')
+          || (d.sensitivities.size() > 0
+               && key == d.states.join('+') + '_' + d.timeSlot + '_' + d.sensitivities.join('+'));
+    }
+
+    function isGuest() {
+      return request.auth.token.firebase.sign_in_provider == 'anonymous';
+    }
+
+    match /tips_cache/{cacheKey} {
+      allow read: if signedIn();
+
+      // Signed-in users who aren't guests can save a tip. It must be well formed, saved under
+      // the ID that matches its states / time slot / sensitivities, and cached for at most
+      // 1 hour (+5 minutes allowance). Guests can read tips but not write them.
+      // Known limitation: a signed-in user could still write a misleading tip. Fully fixing that
+      // needs a Cloud Function to write the cache, which needs the Blaze plan.
+      allow create, update: if signedIn()
+        && !isGuest()
+        && tipKeyMatches(cacheKey, request.resource.data)
+        && request.resource.data.keys().hasOnly(['states', 'timeSlot', 'sensitivities', 'text',
+                                                 'source', 'model', 'createdAt', 'expiresAt'])
+        && request.resource.data.keys().hasAll(['states', 'timeSlot', 'sensitivities', 'text',
+                                                'source', 'createdAt', 'expiresAt'])
+        && request.resource.data.states is list
+        && request.resource.data.states.size() > 0
+        && request.resource.data.sensitivities is list
+        && request.resource.data.timeSlot in ['morning', 'afternoon', 'evening', 'night']
+        && request.resource.data.source in ['ai', 'rule']
+        && request.resource.data.text is string
+        && request.resource.data.text.size() > 0
+        && request.resource.data.text.size() <= 300
+        && optionalString(request.resource.data, 'model', 60)
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.expiresAt <= request.time + duration.value(65, 'm');
+    }
+  }
+}
