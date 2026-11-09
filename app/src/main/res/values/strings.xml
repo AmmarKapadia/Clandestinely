@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Clandestinely</string>
+
+    <!-- M4 Route screen -->
+    <string name="route_summary">%1$d places · %2$d paths</string>
+    <string name="route_load_failed">Could not load the campus map: %1$s</string>
+    <string name="route_not_verified">not verified yet</string>
 </resources>
