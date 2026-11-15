@@ -137,11 +137,20 @@ public class AlertCheckWorker extends Worker {
         }
         String state = states.isEmpty() ? Schema.STATE_NORMAL : WeatherClassifier.mostSevere(states);
 
+        // Testing Comment this after testing
+        // Options
+        // Schema.STATE_RAIN
+        // Schema.STATE_THUNDERSTORM
+        //Schema.STATE_HEAT
+        //Schema.STATE_HAZE_SENSITIVE
+        //Schema.STATE_HAZE_UNHEALTHY
+//        state = Schema.STATE_THUNDERSTORM;   // TEST ONLY - comment before running actual app
+
         // 3. Decide whether to notify.
         SharedPreferences store = getApplicationContext().getSharedPreferences(PREFS, Context.MODE_PRIVATE);
         String last = store.getString(KEY_LAST_STATE, Schema.STATE_NORMAL);
         if (state.equals(Schema.STATE_NORMAL)) {
-            store.edit().putString(KEY_LAST_STATE, Schema.STATE_NORMAL).apply();
+            store.edit().putString(KEY_LAST_STATE, Schema.STATE_NORMAL).commit();
             return Result.success();
         }
         if (state.equals(last)) {
@@ -153,7 +162,7 @@ public class AlertCheckWorker extends Worker {
             return Result.success();                          // not saved, so it notifies later
         }
         if (notify(state, lead)) {
-            store.edit().putString(KEY_LAST_STATE, state).apply();
+            store.edit().putString(KEY_LAST_STATE, state).commit();
         }
         return Result.success();
     }
