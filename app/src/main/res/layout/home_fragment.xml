@@ -167,6 +167,17 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
 
+                <!-- M3 tip card: top tip for the current weather. Tap opens the Tips screen. -->
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/tip_card_container"
+                    android:name="com.example.clandestinely.ui.tips.TipCardFragment"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/card_weather" />
+
                 <!-- Alert state only (mockup 3.2). Pinned to the bottom of the outer card. -->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/card_alert"
@@ -180,7 +191,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/card_weather"
+                    app:layout_constraintTop_toBottomOf="@id/tip_card_container"
                     app:layout_constraintVertical_bias="1.0"
                     app:strokeWidth="0dp"
                     tools:visibility="visible">
