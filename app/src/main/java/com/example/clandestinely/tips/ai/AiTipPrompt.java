@@ -27,7 +27,7 @@ import java.util.List;
 public final class AiTipPrompt {
 
     /** Bump this when the prompt changes, so the report and the cache can tell versions apart. */
-    public static final String PROMPT_VERSION = "v1";
+    public static final String PROMPT_VERSION = "v2";
 
     /** How many forecast hours after the current hour go into the prompt. */
     public static final int FORECAST_HOURS = 3;
