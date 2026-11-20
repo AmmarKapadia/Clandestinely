@@ -18,9 +18,11 @@ import com.example.clandestinely.R;
 import com.example.clandestinely.data.model.CurrentWeather;
 import com.example.clandestinely.data.model.Schema;
 import com.example.clandestinely.data.repository.WeatherRepository;
+import com.example.clandestinely.data.repository.CurrentWeatherStates;
 import com.example.clandestinely.data.weather.WeatherClassifier;
 
 import java.util.Date;
+import java.util.List;
 public class HomeFragment extends Fragment {
 
     private TextView textTemperature, textFeelsLike, textHumidity, textRainChance, textAqi, textLastUpdated, textSummary;
@@ -68,7 +70,9 @@ public class HomeFragment extends Fragment {
         String time = DateFormat.getTimeFormat(requireContext()).format(new Date(w.updatedAt));
         textLastUpdated.setText(getString(R.string.home_last_updated, time));
 
-        String state = WeatherClassifier.mostSevere(WeatherClassifier.classify(w));
+        List<String> states = WeatherClassifier.classify(w);
+        CurrentWeatherStates.update(states);   // M3: tips follow the live weather
+        String state = WeatherClassifier.mostSevere(states);
         textSummary.setText(summaryFor(state));
     }
 
