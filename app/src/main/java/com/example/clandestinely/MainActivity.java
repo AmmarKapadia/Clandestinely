@@ -40,9 +40,6 @@ public class MainActivity extends AppCompatActivity {
 
         // M2: start the background weather alert check (only runs once; KEEP).
         AlertCheckWorker.schedule(this);
-
-        // M2: start the background weather alert check (only runs once; KEEP).
-        AlertCheckWorker.schedule(this);
         // M2: register this phone for push alerts.
         saveFcmToken();
 
