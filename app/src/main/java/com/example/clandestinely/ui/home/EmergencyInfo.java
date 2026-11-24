@@ -24,6 +24,7 @@ public class EmergencyInfo {
     public static final String PHONE_AMBULANCE = "0379492898";
     public static final String PHONE_CLINIC = "0379673212";
     public static final String PHONE_BOMBA = "0322824444";
+    public static final String PHONE_JPPHB = "0379673999";
 
     public interface CallCallback {
         void onCallRequested(String phoneNumber);
@@ -54,6 +55,10 @@ public class EmergencyInfo {
         }
         if (cardBomba != null) {
             cardBomba.setOnClickListener(v -> callCallback.onCallRequested(PHONE_BOMBA));
+        }
+        MaterialCardView cardJpphb = rootView.findViewById(R.id.cardJpphb);
+        if (cardJpphb != null) {
+            cardJpphb.setOnClickListener(v -> callCallback.onCallRequested(PHONE_JPPHB));
         }
 
         setupSopToggles(rootView);

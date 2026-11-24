@@ -167,7 +167,18 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <!-- Alert state only (mockup 3.2). Pinned to the bottom of the outer card. -->
+                <!-- M3 tip card: top tip for the current weather. Tap opens the Tips screen. -->
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/tip_card_container"
+                    android:name="com.example.clandestinely.ui.tips.TipCardFragment"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/card_weather" />
+
+                <!-- Alert state only (mockup 3.2). Sits below the tip card. -->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/card_alert"
                     android:layout_width="0dp"
@@ -179,7 +190,7 @@
                     app:cardElevation="0dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/card_weather"
+                    app:layout_constraintTop_toBottomOf="@id/tip_card_container"
                     app:strokeWidth="0dp"
                     tools:visibility="visible">
 
@@ -423,6 +434,59 @@
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
+                <!-- JPPHB (UM Estates / facilities) -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardJpphb"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:cardBackgroundColor="@color/navy_mid"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="1dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cardBomba">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="14dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="JPPHB (UM Estates &amp; Facilities)"
+                                android:textColor="#FFFFFF"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="03-7967 3999 • Fallen trees &amp; damaged facilities (8am–5pm)"
+                                android:textColor="#B5E8FD"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:contentDescription="Call JPPHB"
+                            android:src="@android:drawable/ic_menu_call"
+                            app:tint="@color/sand_yellow" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
                 <!-- Campus Weather Hazard SOPs Header -->
                 <TextView
                     android:id="@+id/tv_sop_title"
@@ -434,7 +498,7 @@
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/cardBomba" />
+                    app:layout_constraintTop_toBottomOf="@id/cardJpphb" />
 
                 <!-- SOP 1: Thunderstorms & Lightning -->
                 <com.google.android.material.card.MaterialCardView
