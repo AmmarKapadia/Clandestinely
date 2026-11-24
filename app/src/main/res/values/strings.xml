@@ -72,4 +72,29 @@
         <item>Blocked drain</item>
         <item>Other</item>
     </string-array>
+
+    <!-- M7 Emergency info -->
+    <string name="emergency_call_security">UM SECURITY</string>
+    <string name="emergency_call_999">CALL 999</string>
+    <string name="emergency_directory_title">UM &amp; Pantai Emergency Directory</string>
+    <string name="emergency_ambulance_name">PPUM / UMMC Ambulance Hotline</string>
+    <string name="emergency_ambulance_detail">03-7949 2898 • Severe injuries &amp; lightning strikes</string>
+    <string name="emergency_ambulance_call">Call Ambulance</string>
+    <string name="emergency_clinic_name">UM Student Health Clinic (Klinik Pelajar)</string>
+    <string name="emergency_clinic_detail">03-7967 3212 • Campus medical care</string>
+    <string name="emergency_clinic_call">Call Clinic</string>
+    <string name="emergency_bomba_name">Bomba (Pantai Fire &amp; Rescue)</string>
+    <string name="emergency_bomba_detail">03-2282 4444 • Flash floods &amp; trapped vehicles</string>
+    <string name="emergency_bomba_call">Call Bomba</string>
+    <string name="emergency_jpphb_name">JPPHB (UM Estates &amp; Facilities)</string>
+    <string name="emergency_jpphb_detail">03-7967 3999 • Fallen trees &amp; damaged facilities (8am–5pm)</string>
+    <string name="emergency_jpphb_call">Call JPPHB</string>
+    <string name="emergency_sop_title">Campus Weather Hazard SOPs (Tap to Expand)</string>
+    <string name="emergency_sop_expand">Expand</string>
+    <string name="emergency_sop_lightning_title">⚡ Thunderstorms &amp; Lightning</string>
+    <string name="emergency_sop_lightning_body">• Move immediately inside concrete faculty buildings, Central Library, or Kolej Kediaman.\n• Avoid open areas such as Varsity Lake, Varsity Field, and campus bus stops without lightning protection.\n• Never shelter under tall trees.</string>
+    <string name="emergency_sop_trees_title">🌳 Fallen Trees &amp; Slope Landslips</string>
+    <string name="emergency_sop_trees_body">• Stay alert along tree-lined routes (Lingkungan Budi) during strong gusts.\n• Keep at least 10 meters away from downed power cables.\n• Report blocked campus roads immediately to UM Security (03-7967 7777).</string>
+    <string name="emergency_sop_flood_title">🌊 Flash Floods &amp; Road Ponding</string>
+    <string name="emergency_sop_flood_body">• Avoid low-lying campus exits and underpasses near KL Gate and Pantai Gate during heavy downpours.\n• Never drive or walk through moving floodwater.\n• Move parked vehicles to higher ground if water levels rise.</string>
 </resources>
