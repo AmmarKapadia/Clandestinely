@@ -38,7 +38,7 @@ public class HomeFragment extends Fragment {
                 } else if (pendingPhoneNumber != null && isAdded()) {
                     EmergencyInfo.startDialIntent(this, pendingPhoneNumber);
                 } else if (isAdded()) {
-                    Toast.makeText(requireContext(), "Permission DENIED", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), R.string.emergency_permission_denied, Toast.LENGTH_SHORT).show();
                 }
             });
 
