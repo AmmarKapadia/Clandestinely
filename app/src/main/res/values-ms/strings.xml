@@ -13,7 +13,7 @@
     <string name="home_aqi_unavailable">AQI tidak boleh diakses</string>
     <string name="home_last_updated">Dikemas kini %1$s</string>
     <string name="summary_normal">☀️ Tiada amaran cuaca pada masa sekarang</string>
-    <string name="summary_rain">🌧️ Kemungkingan besar hujan pada jam ini</string>
+    <string name="summary_rain">🌧️ Kemungkinan besar hujan pada jam ini</string>
     <string name="summary_thunderstorm">⛈️ Ribut petir di kampus</string>
     <string name="summary_heat">🥵 Sangat panas di luar</string>
     <string name="summary_haze_sensitive">😷 Jerebu: tidak sihat untuk kumpulan yang sensitif</string>
@@ -25,7 +25,7 @@
     <string name="forecast_daily">Ramalan Harian</string>
     <string name="forecast_hour">%1$s</string>
     <string name="forecast_temperature">%1$.0f°</string>
-    <string name="forecast_feels_like">FRasa seperti %1$.0f°</string>
+    <string name="forecast_feels_like">Rasa seperti %1$.0f°</string>
 
     <!-- M1 Forecast cards -->
     <string name="emoji_normal">☀️</string>
@@ -43,8 +43,8 @@
     <string name="alert_channel_name">Amaran cuaca</string>
     <string name="alert_channel_description">Amaran hujan, ribut petir, cuaca panas dan jerebu untuk kampus UM</string>
     <string name="alert_title">Amaran cuaca</string>
-    <string name="alert_rain">🌧️ Kemungkingan hujan dalam %1$d minit</string>
-    <string name="alert_thunderstorm">⛈️ Kemunkingan ribut petir dalam %1$d minit</string>
+    <string name="alert_rain">🌧️ Kemungkinan hujan dalam %1$d minit</string>
+    <string name="alert_thunderstorm">⛈️ Kemungkinan ribut petir dalam %1$d minit</string>
 
     <!-- M4 Route screen -->
     <string name="route_summary">%1$d tempat · %2$d laluan</string>
