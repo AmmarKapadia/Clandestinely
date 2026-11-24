@@ -6,6 +6,7 @@ import android.content.pm.ApplicationInfo;
 import android.os.Build;
 
 import com.example.clandestinely.alerts.AlertCheckWorker;
+import com.example.clandestinely.alerts.AlertNotifier;
 import com.example.clandestinely.ui.theme.ThemeHelper;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.appcheck.FirebaseAppCheck;
@@ -38,7 +39,7 @@ public class CuacaApp extends Application {
     private void createAlertChannel() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) return;
         NotificationChannel channel = new NotificationChannel(
-                AlertCheckWorker.CHANNEL_ID,
+                AlertNotifier.CHANNEL_ID,
                 getString(R.string.alert_channel_name),
                 NotificationManager.IMPORTANCE_DEFAULT);
         channel.setDescription(getString(R.string.alert_channel_description));
