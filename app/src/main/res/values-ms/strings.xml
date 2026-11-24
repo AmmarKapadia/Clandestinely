@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Clandestinely</string>
+
+    <!-- M1 Home -->
+    <string name="home_location">Universiti Malaya</string>
+    <string name="home_alerts_title">Amaran/Nasihat</string>
+    <string name="home_temperature">%1$.0f°C</string>
+    <string name="home_feels_like">Rasa seperti %1$.0f°C</string>
+    <string name="home_humidity">Kelembapan %1$d%%</string>
+    <string name="home_rain_chance">Kebarangkalian hujan %1$d%%</string>
+    <string name="home_aqi">AQI %1$d</string>
+    <string name="home_aqi_unavailable">AQI tidak boleh diakses</string>
+    <string name="home_last_updated">Dikemas kini %1$s</string>
+    <string name="summary_normal">☀️ Tiada amaran cuaca pada masa sekarang</string>
+    <string name="summary_rain">🌧️ Kemungkingan besar hujan pada jam ini</string>
+    <string name="summary_thunderstorm">⛈️ Ribut petir di kampus</string>
+    <string name="summary_heat">🥵 Sangat panas di luar</string>
+    <string name="summary_haze_sensitive">😷 Jerebu: tidak sihat untuk kumpulan yang sensitif</string>
+    <string name="summary_haze_unhealthy">🌫️ Jerebu: udara tidak sihat</string>
+
+    <!-- M1 Forecast -->
+    <string name="forecast_location">Kuala Lumpur</string>
+    <string name="forecast_hourly">Ramalan Mengikut Jam</string>
+    <string name="forecast_daily">Ramalan Harian</string>
+    <string name="forecast_hour">%1$s</string>
+    <string name="forecast_temperature">%1$.0f°</string>
+    <string name="forecast_feels_like">FRasa seperti %1$.0f°</string>
+
+    <!-- M1 Forecast cards -->
+    <string name="emoji_normal">☀️</string>
+    <string name="emoji_rain">🌧️</string>
+    <string name="emoji_thunderstorm">⛈️</string>
+    <string name="emoji_heat">🥵</string>
+    <string name="emoji_haze_sensitive">😷</string>
+    <string name="emoji_haze_unhealthy">🌫️</string>
+    <string name="emoji_air_good">😊</string>
+    <string name="aqicard_haze_sensitive">tidak sihat untuk kumpulan yang sensitif</string>
+    <string name="aqicard_haze_unhealthy">udara tidak sihat</string>
+    <string name="aqicard_haze_healthy">udara sihat</string>
+
+    <!-- M2 Alerts (notification wording: placeholder, team to confirm) -->
+    <string name="alert_channel_name">Amaran cuaca</string>
+    <string name="alert_channel_description">Amaran hujan, ribut petir, cuaca panas dan jerebu untuk kampus UM</string>
+    <string name="alert_title">Amaran cuaca</string>
+    <string name="alert_rain">🌧️ Kemungkingan hujan dalam %1$d minit</string>
+    <string name="alert_thunderstorm">⛈️ Kemunkingan ribut petir dalam %1$d minit</string>
+
+    <!-- M4 Route screen -->
+    <string name="route_summary">%1$d tempat · %2$d laluan</string>
+    <string name="route_load_failed">Tidak dapat muat naik peta kampus: %1$s</string>
+    <string name="route_not_verified">belum disahkan</string>
+</resources>
