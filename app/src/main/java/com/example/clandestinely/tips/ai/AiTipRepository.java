@@ -123,7 +123,7 @@ public final class AiTipRepository {
             callback.onResult(null);
             return;
         }
-        final String memoKey = memoKey(r);
+        final String memoKey = memoKey(key, r);
 
         Memo m = memo.get(memoKey);
         if (m != null && m.until > System.currentTimeMillis()) {
@@ -223,6 +223,11 @@ public final class AiTipRepository {
         } catch (IllegalArgumentException e) {
             key = "invalid";
         }
+        return memoKey(key, r);
+    }
+
+    /** Same as memoKey(r), for callers that already built the tips_cache key. */
+    private static String memoKey(String key, TipRequest r) {
         return key + "|" + r.language + (r.preview ? "|preview" : "") + (r.guest ? "|guest" : "");
     }
 

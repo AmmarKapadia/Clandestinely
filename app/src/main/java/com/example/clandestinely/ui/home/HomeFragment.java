@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -33,12 +32,11 @@ public class HomeFragment extends Fragment {
 
     private final ActivityResultLauncher<String> requestPermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+                // Denied: open the dialer with the number filled in instead.
                 if (isGranted) {
                     EmergencyInfo.startCallIntent(this, pendingPhoneNumber);
-                } else if (pendingPhoneNumber != null && isAdded()) {
+                } else {
                     EmergencyInfo.startDialIntent(this, pendingPhoneNumber);
-                } else if (isAdded()) {
-                    Toast.makeText(requireContext(), R.string.emergency_permission_denied, Toast.LENGTH_SHORT).show();
                 }
             });
 

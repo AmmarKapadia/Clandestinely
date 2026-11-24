@@ -74,7 +74,6 @@
     </string-array>
 
     <!-- M7 Emergency info -->
-    <string name="emergency_permission_denied">Permission denied</string>
     <string name="emergency_call_security">UM SECURITY</string>
     <string name="emergency_call_999">CALL 999</string>
     <string name="emergency_directory_title">UM &amp; Pantai Emergency Directory</string>

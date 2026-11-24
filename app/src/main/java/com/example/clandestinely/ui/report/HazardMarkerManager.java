@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat;
 import androidx.annotation.NonNull;
 
 import com.example.clandestinely.data.model.HazardReport;
+import com.example.clandestinely.data.model.Schema;
 import com.example.clandestinely.data.repository.HazardRepository;
 import com.example.clandestinely.R;
 import com.google.firebase.firestore.ListenerRegistration;
@@ -26,18 +27,23 @@ import java.util.List;
  */
 public class HazardMarkerManager {
 
-    private final Context context;
     private final MapView mapView;
     private final HazardRepository repository;
+    // Built once and shared by every pin (only one popup is open at a time).
+    private final Drawable icon;
+    private final MarkerInfoWindow infoWindow;
+    private final String[] categoryLabels;
 
     private final List<Marker> markers = new ArrayList<>();
     private List<HazardReport> latestReports = new ArrayList<>();
     private ListenerRegistration registration;
 
     public HazardMarkerManager(Context context, MapView mapView, HazardRepository repository) {
-        this.context = context;
         this.mapView = mapView;
         this.repository = repository;
+        this.icon = ContextCompat.getDrawable(context, R.drawable.ic_hazard_pin);
+        this.infoWindow = new MarkerInfoWindow(R.layout.hazard_info_window, mapView);
+        this.categoryLabels = context.getResources().getStringArray(R.array.hazard_categories);
     }
 
     /** Start listening for active reports. Call from onStart(). */
@@ -70,8 +76,6 @@ public class HazardMarkerManager {
         mapView.getOverlays().removeAll(markers);
         markers.clear();
 
-        Drawable icon = ContextCompat.getDrawable(context, R.drawable.ic_hazard_pin);
-
         for (HazardReport report : latestReports) {
             if (report.getLocation() == null) continue;
 
@@ -81,7 +85,7 @@ public class HazardMarkerManager {
                     report.getLocation().getLongitude()));
             marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
             marker.setIcon(icon);
-            marker.setInfoWindow(new MarkerInfoWindow(R.layout.hazard_info_window, mapView));
+            marker.setInfoWindow(infoWindow);
             marker.setTitle(categoryLabel(report.getCategory()));
             String description = report.getDescription();
             if (description != null && !description.trim().isEmpty()) {
@@ -94,13 +98,10 @@ public class HazardMarkerManager {
         mapView.invalidate();
     }
 
-    private static String categoryLabel(String category) {
-        if (category == null) return "Hazard";
-        switch (category) {
-            case "flood": return "Flood";
-            case "fallen_tree": return "Fallen tree";
-            case "blocked_drain": return "Blocked drain";
-            default: return "Other hazard";
-        }
+    /** Same labels as the report form (R.array.hazard_categories matches Schema.HAZARD_CATEGORIES). */
+    private String categoryLabel(String category) {
+        int index = Schema.HAZARD_CATEGORIES.indexOf(category);
+        if (index < 0) index = Schema.HAZARD_CATEGORIES.indexOf(Schema.CATEGORY_OTHER);
+        return categoryLabels[index];
     }
 }

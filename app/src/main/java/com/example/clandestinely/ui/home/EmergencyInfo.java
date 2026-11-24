@@ -6,15 +6,12 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.clandestinely.R;
-import com.google.android.material.button.MaterialButton;
-import com.google.android.material.card.MaterialCardView;
 
 public class EmergencyInfo {
 
@@ -32,33 +29,29 @@ public class EmergencyInfo {
 
     private EmergencyInfo() {}
 
+    /** Each tap-to-call view and the number it dials. */
+    private static final int[] CALL_VIEW_IDS = {
+            R.id.btnCallSecurity, R.id.btnCall999, R.id.cardAmbulance,
+            R.id.cardClinic, R.id.cardBomba, R.id.cardJpphb};
+    private static final String[] CALL_NUMBERS = {
+            PHONE_UM_SECURITY, PHONE_EMERGENCY_999, PHONE_AMBULANCE,
+            PHONE_CLINIC, PHONE_BOMBA, PHONE_JPPHB};
+
+    /** Each SOP header and the body it expands or collapses. */
+    private static final int[][] SOP_HEADER_BODY_IDS = {
+            {R.id.sopHeaderLightning, R.id.sopBodyLightning},
+            {R.id.sopHeaderTrees, R.id.sopBodyTrees},
+            {R.id.sopHeaderFlood, R.id.sopBodyFlood}};
+
     public static void setupEmergencyFeatures(Fragment fragment, View rootView, CallCallback callCallback) {
         if (fragment == null || rootView == null) return;
 
-        MaterialButton btnCallSecurity = rootView.findViewById(R.id.btnCallSecurity);
-        MaterialButton btnCall999 = rootView.findViewById(R.id.btnCall999);
-        MaterialCardView cardAmbulance = rootView.findViewById(R.id.cardAmbulance);
-        MaterialCardView cardClinic = rootView.findViewById(R.id.cardClinic);
-        MaterialCardView cardBomba = rootView.findViewById(R.id.cardBomba);
-
-        if (btnCallSecurity != null) {
-            btnCallSecurity.setOnClickListener(v -> callCallback.onCallRequested(PHONE_UM_SECURITY));
-        }
-        if (btnCall999 != null) {
-            btnCall999.setOnClickListener(v -> callCallback.onCallRequested(PHONE_EMERGENCY_999));
-        }
-        if (cardAmbulance != null) {
-            cardAmbulance.setOnClickListener(v -> callCallback.onCallRequested(PHONE_AMBULANCE));
-        }
-        if (cardClinic != null) {
-            cardClinic.setOnClickListener(v -> callCallback.onCallRequested(PHONE_CLINIC));
-        }
-        if (cardBomba != null) {
-            cardBomba.setOnClickListener(v -> callCallback.onCallRequested(PHONE_BOMBA));
-        }
-        MaterialCardView cardJpphb = rootView.findViewById(R.id.cardJpphb);
-        if (cardJpphb != null) {
-            cardJpphb.setOnClickListener(v -> callCallback.onCallRequested(PHONE_JPPHB));
+        for (int i = 0; i < CALL_VIEW_IDS.length; i++) {
+            View view = rootView.findViewById(CALL_VIEW_IDS[i]);
+            String number = CALL_NUMBERS[i];
+            if (view != null) {
+                view.setOnClickListener(v -> callCallback.onCallRequested(number));
+            }
         }
 
         setupSopToggles(rootView);
@@ -94,33 +87,16 @@ public class EmergencyInfo {
     }
 
     private static void setupSopToggles(View rootView) {
-        View sopHeaderLightning = rootView.findViewById(R.id.sopHeaderLightning);
-        TextView sopBodyLightning = rootView.findViewById(R.id.sopBodyLightning);
-
-        View sopHeaderTrees = rootView.findViewById(R.id.sopHeaderTrees);
-        TextView sopBodyTrees = rootView.findViewById(R.id.sopBodyTrees);
-
-        View sopHeaderFlood = rootView.findViewById(R.id.sopHeaderFlood);
-        TextView sopBodyFlood = rootView.findViewById(R.id.sopBodyFlood);
-
-        if (sopHeaderLightning != null && sopBodyLightning != null) {
-            sopHeaderLightning.setOnClickListener(v -> toggleVisibility(sopBodyLightning));
-        }
-
-        if (sopHeaderTrees != null && sopBodyTrees != null) {
-            sopHeaderTrees.setOnClickListener(v -> toggleVisibility(sopBodyTrees));
-        }
-
-        if (sopHeaderFlood != null && sopBodyFlood != null) {
-            sopHeaderFlood.setOnClickListener(v -> toggleVisibility(sopBodyFlood));
+        for (int[] ids : SOP_HEADER_BODY_IDS) {
+            View header = rootView.findViewById(ids[0]);
+            View body = rootView.findViewById(ids[1]);
+            if (header != null && body != null) {
+                header.setOnClickListener(v -> toggleVisibility(body));
+            }
         }
     }
 
     private static void toggleVisibility(View view) {
-        if (view.getVisibility() == View.VISIBLE) {
-            view.setVisibility(View.GONE);
-        } else {
-            view.setVisibility(View.VISIBLE);
-        }
+        view.setVisibility(view.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
     }
 }

@@ -81,6 +81,8 @@ public class TipsViewModel extends AndroidViewModel {
     private boolean profileLoaded = false;
     /** Counts refreshes, so an old smart-tip answer can't overwrite newer weather. */
     private volatile int generation = 0;
+    /** Malaysia time "HH:mm" for the prompt. Only used on the main thread, so one instance is enough. */
+    private final SimpleDateFormat clock = new SimpleDateFormat("HH:mm", Locale.US);
 
     private final Observer<List<String>> weatherObserver = states -> {
         currentStates = states;
@@ -89,6 +91,7 @@ public class TipsViewModel extends AndroidViewModel {
 
     public TipsViewModel(@NonNull Application application) {
         super(application);
+        clock.setTimeZone(HazardExpiry.MALAYSIA);
         library = RuleTipLoader.get(application);
         CurrentWeatherStates.get().observeForever(weatherObserver);
         loadProfile();
@@ -128,8 +131,6 @@ public class TipsViewModel extends AndroidViewModel {
 
     private TipRequest buildRequest(List<String> states, String slot, long now) {
         boolean preview = CurrentWeatherStates.isPreview();
-        SimpleDateFormat clock = new SimpleDateFormat("HH:mm", Locale.US);
-        clock.setTimeZone(HazardExpiry.MALAYSIA);
         return new TipRequest(states, sensitivities, slot, clock.format(new Date(now)), language,
                 preview ? null : CurrentWeatherStates.latestWeather(),
                 preview ? null : AiTipPrompt.nextHours(CurrentWeatherStates.hourly()),

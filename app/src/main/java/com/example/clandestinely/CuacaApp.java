@@ -8,7 +8,6 @@ import android.os.Build;
 import com.example.clandestinely.alerts.AlertCheckWorker;
 import com.example.clandestinely.alerts.AlertNotifier;
 import com.example.clandestinely.ui.theme.ThemeHelper;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.appcheck.FirebaseAppCheck;
 import com.google.firebase.appcheck.debug.DebugAppCheckProviderFactory;
 import com.google.firebase.appcheck.playintegrity.PlayIntegrityAppCheckProviderFactory;
@@ -28,7 +27,6 @@ public class CuacaApp extends Application {
      * release builds use Play Integrity.
      */
     private void setUpAppCheck() {
-        FirebaseApp.initializeApp(this);
         boolean debuggable = (getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
         FirebaseAppCheck.getInstance().installAppCheckProviderFactory(debuggable
                 ? DebugAppCheckProviderFactory.getInstance()

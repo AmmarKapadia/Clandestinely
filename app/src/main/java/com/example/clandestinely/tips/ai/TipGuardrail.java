@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.clandestinely.data.model.Schema;
-import com.example.clandestinely.tips.RuleTipLibrary;
+import com.example.clandestinely.data.weather.WeatherClassifier;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -140,7 +140,7 @@ public final class TipGuardrail {
             }
         }
 
-        String main = mostSevere(states);
+        String main = WeatherClassifier.mostSevere(states);
         List<String> topic = TOPIC.get(main);
         if (topic != null && !containsAny(lower, topic)) {
             return Result.fail("off topic for " + main);
@@ -193,13 +193,6 @@ public final class TipGuardrail {
             if (lower.contains(w)) return true;
         }
         return false;
-    }
-
-    private static String mostSevere(List<String> states) {
-        for (String s : RuleTipLibrary.SEVERITY_ORDER) {
-            if (states.contains(s)) return s;
-        }
-        return Schema.STATE_NORMAL;
     }
 
     private static boolean isQuote(char c) {
